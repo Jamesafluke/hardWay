@@ -31,6 +31,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "jumpbox" do |jumpbox|
     jumpbox.vm.box = "debian/bookworm64"
     jumpbox.vm.hostname = "jumpbox"
+    jumpbox.vm.network "forwarded_port", guest: 22, host: 2220, id: "ssh", auto_correct: false
     jumpbox.vm.disk :disk, size: "10GB", primary: true
     jumpbox.vm.provider "virtualbox" do |vb|
       vb.name = "jumpbox"
@@ -47,6 +48,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "server" do |server|
     server.vm.box = "debian/bookworm64"
     server.vm.hostname = "server"
+    server.vm.network "forwarded_port", guest: 22, host: 2221, id: "ssh", auto_correct: false
     server.vm.disk :disk, size: "20GB", primary: true
     server.vm.provider "virtualbox" do |vb|
       vb.name = "server"
@@ -63,6 +65,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "node0" do |node0|
     node0.vm.box = "debian/bookworm64"
     node0.vm.hostname = "node0"
+    node0.vm.network "forwarded_port", guest: 22, host: 2222, id: "ssh", auto_correct: false
     node0.vm.disk :disk, size: "20GB", primary: true
     node0.vm.provider "virtualbox" do |vb|
       vb.name = "node0"
@@ -79,6 +82,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "node1" do |node1|
     node1.vm.box = "debian/bookworm64"
     node1.vm.hostname = "node1"
+    node1.vm.network "forwarded_port", guest: 22, host: 2223, id: "ssh", auto_correct: false
     node1.vm.disk :disk, size: "20GB", primary: true
     node1.vm.provider "virtualbox" do |vb|
       vb.name = "node1"
