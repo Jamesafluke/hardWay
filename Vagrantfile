@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
   # Jumpbox Node (Admin / Orchestrator)
   config.vm.define "jumpbox" do |jumpbox|
     jumpbox.vm.box = "debian/bookworm64"
-    jumpbox.vm.hostname = "jumpbox"
+    jumpbox.vm.hostname = "jumpbox.kubernetes.local"
     jumpbox.vm.network "private_network", ip: "10.240.0.10"
     jumpbox.vm.network "forwarded_port", guest: 22, host: 2220, id: "ssh", auto_correct: false
     jumpbox.vm.disk :disk, size: "10GB", primary: true
@@ -50,7 +50,7 @@ Vagrant.configure("2") do |config|
   # Control Plane / Server Node
   config.vm.define "server" do |server|
     server.vm.box = "debian/bookworm64"
-    server.vm.hostname = "server"
+    server.vm.hostname = "server.kubernetes.local"
     server.vm.network "private_network", ip: "10.240.0.11"
     server.vm.network "forwarded_port", guest: 22, host: 2221, id: "ssh", auto_correct: false
     server.vm.disk :disk, size: "20GB", primary: true
@@ -69,7 +69,7 @@ Vagrant.configure("2") do |config|
   # Worker Node 0
   config.vm.define "node0" do |node0|
     node0.vm.box = "debian/bookworm64"
-    node0.vm.hostname = "node0"
+    node0.vm.hostname = "node0.kubernetes.local"
     node0.vm.network "private_network", ip: "10.240.0.20"
     node0.vm.network "forwarded_port", guest: 22, host: 2222, id: "ssh", auto_correct: false
     node0.vm.disk :disk, size: "20GB", primary: true
@@ -88,7 +88,7 @@ Vagrant.configure("2") do |config|
   # Worker Node 1
   config.vm.define "node1" do |node1|
     node1.vm.box = "debian/bookworm64"
-    node1.vm.hostname = "node1"
+    node1.vm.hostname = "node1.kubernetes.local"
     node1.vm.network "private_network", ip: "10.240.0.21"
     node1.vm.network "forwarded_port", guest: 22, host: 2223, id: "ssh", auto_correct: false
     node1.vm.disk :disk, size: "20GB", primary: true
